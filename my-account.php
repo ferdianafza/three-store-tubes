@@ -56,7 +56,7 @@
                     <div class="navbar align-self-center d-flex">
                         <a class="nav-link" href="#" id="searchIcon"><i class='fa fa-search bx-sm text-primary'></i></a>
                         <a class="nav-link" href="wishlist.html"><i class='fa fa-heart bx-sm text-primary'></i></a>
-                        <a class="nav-link" href="cart.html"><i class='fa fa-shopping-cart bx-sm text-primary'></i></a>
+                        <a class="nav-link" href="cart.php"><i class='fa fa-shopping-cart bx-sm text-primary'></i></a>
                         <a class="nav-link" href="my-account.html"><i class='fa fa-user-circle bx-sm text-primary'></i></a>
                         <i class="fa-solid fa-circle-user"></i>
                     </div>

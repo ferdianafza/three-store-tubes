@@ -243,7 +243,7 @@
                                     <img src="img/branded 1.JPEG" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -269,7 +269,7 @@
                                     <img src="img/branded 2.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -296,7 +296,7 @@
                                     <img src="img/branded 3.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -323,7 +323,7 @@
                                     <img src="img/branded 4.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -349,7 +349,7 @@
                                     <img src="img/branded 5.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -388,7 +388,7 @@
                                     <img src="img/lokal 1.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -415,7 +415,7 @@
                                     <img src="img/lokal 2.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -441,7 +441,7 @@
                                     <img src="img/lokal 3.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -467,7 +467,7 @@
                                     <img src="img/lokal 4.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
@@ -493,7 +493,7 @@
                                     <img src="img/lokal 5.jpeg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.html"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
                                     <a href="wishlist.html"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
