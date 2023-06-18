@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="id">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{delete Object.assign(arguments[0],{[t(e)]:arguments[0][e]})[e]})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+	
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- This site is optimized with the Yoast SEO plugin v20.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Sepatu Running Terbaik dari Brand Nike, Ini Daftarnya - ArtikelSepatu</title>
+	<meta name="description" content="Sepatu Running Terbaik - Sepatu running adalah alat yang penting bagi para atlet lari, terutama bagi mereka yang sering melakukan kegiatan." />
+	<link rel="canonical" href="https://artikelsepatu.com/sepatu-running-terbaik/" />
+	<meta property="og:locale" content="id_ID" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Sepatu Running Terbaik dari Brand Nike, Ini Daftarnya - ArtikelSepatu" />
+	<meta property="og:description" content="Sepatu Running Terbaik - Sepatu running adalah alat yang penting bagi para atlet lari, terutama bagi mereka yang sering melakukan kegiatan." />
+	<meta property="og:url" content="https://artikelsepatu.com/sepatu-running-terbaik/" />
+	<meta property="og:site_name" content="ArtikelSepatu" />
+	<meta property="article:publisher" content="https://fb.me/abumwb" />
+	<meta property="article:published_time" content="2023-01-05T06:40:24+00:00" />
+	<meta property="article:modified_time" content="2023-01-31T08:49:13+00:00" />
+	<meta property="og:image" content="https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg" />
+	<meta property="og:image:width" content="800" />
+	<meta property="og:image:height" content="525" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="author" content="Tony" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Ditulis oleh" />
+	<meta name="twitter:data1" content="Tony" />
+	<meta name="twitter:label2" content="Estimasi waktu membaca" />
+	<meta name="twitter:data2" content="4 menit" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://artikelsepatu.com/sepatu-running-terbaik/#article","isPartOf":{"@id":"https://artikelsepatu.com/sepatu-running-terbaik/"},"author":{"name":"Tony","@id":"https://artikelsepatu.com/#/schema/person/60817668aeb82cf9a4abd89afe3a874c"},"headline":"Sepatu Running Terbaik dari Brand Nike, Ini Daftarnya","datePublished":"2023-01-05T06:40:24+00:00","dateModified":"2023-01-31T08:49:13+00:00","mainEntityOfPage":{"@id":"https://artikelsepatu.com/sepatu-running-terbaik/"},"wordCount":742,"publisher":{"@id":"https://artikelsepatu.com/#/schema/person/9e875e739249964bfdfc9b5ca2f00db5"},"image":{"@id":"https://artikelsepatu.com/sepatu-running-terbaik/#primaryimage"},"thumbnailUrl":"https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg","articleSection":["Sepatu Lari","Sepatu Nike"],"inLanguage":"id"},{"@type":"WebPage","@id":"https://artikelsepatu.com/sepatu-running-terbaik/","url":"https://artikelsepatu.com/sepatu-running-terbaik/","name":"Sepatu Running Terbaik dari Brand Nike, Ini Daftarnya - ArtikelSepatu","isPartOf":{"@id":"https://artikelsepatu.com/#website"},"primaryImageOfPage":{"@id":"https://artikelsepatu.com/sepatu-running-terbaik/#primaryimage"},"image":{"@id":"https://artikelsepatu.com/sepatu-running-terbaik/#primaryimage"},"thumbnailUrl":"https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg","datePublished":"2023-01-05T06:40:24+00:00","dateModified":"2023-01-31T08:49:13+00:00","description":"Sepatu Running Terbaik - Sepatu running adalah alat yang penting bagi para atlet lari, terutama bagi mereka yang sering melakukan kegiatan.","breadcrumb":{"@id":"https://artikelsepatu.com/sepatu-running-terbaik/#breadcrumb"},"inLanguage":"id","potentialAction":[{"@type":"ReadAction","target":["https://artikelsepatu.com/sepatu-running-terbaik/"]}]},{"@type":"ImageObject","inLanguage":"id","@id":"https://artikelsepatu.com/sepatu-running-terbaik/#primaryimage","url":"https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg","contentUrl":"https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg","width":800,"height":525,"caption":"laundry.drop.id"},{"@type":"BreadcrumbList","@id":"https://artikelsepatu.com/sepatu-running-terbaik/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://artikelsepatu.com/"},{"@type":"ListItem","position":2,"name":"Merek Sepatu","item":"https://artikelsepatu.com/category/merek-sepatu/"},{"@type":"ListItem","position":3,"name":"Sepatu Nike","item":"https://artikelsepatu.com/category/merek-sepatu/sepatu-nike/"},{"@type":"ListItem","position":4,"name":"Sepatu Running Terbaik dari Brand Nike, Ini Daftarnya"}]},{"@type":"WebSite","@id":"https://artikelsepatu.com/#website","url":"https://artikelsepatu.com/","name":"ArtikelSepatu","description":"","publisher":{"@id":"https://artikelsepatu.com/#/schema/person/9e875e739249964bfdfc9b5ca2f00db5"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://artikelsepatu.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"id"},{"@type":["Person","Organization"],"@id":"https://artikelsepatu.com/#/schema/person/9e875e739249964bfdfc9b5ca2f00db5","name":"Abu Hasan","image":{"@type":"ImageObject","inLanguage":"id","@id":"https://artikelsepatu.com/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/09b574e3d73bcfec2edb2661766ca390?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/09b574e3d73bcfec2edb2661766ca390?s=96&d=mm&r=g","caption":"Abu Hasan"},"logo":{"@id":"https://artikelsepatu.com/#/schema/person/image/"},"description":"Hallo, saya Abu Hasan sebagai Admin disini. Berbekal pengalaman dalam menulis, saya pemilik blog untuk menjadi salah satu author di https://artikelsepatu.com yang merupakan website pusat informasi harga dan model sepatu. Website ini memberikan informasi seputar harga sepatu, model sepatu dan informasi terbaru tentang dunia Sepatu. Jika ingin menghubungi saya bisa lewat form disini Contact Us","sameAs":["http://abublogger.com","https://fb.me/abumwb","https://instagram.com/abumwb"]},{"@type":"Person","@id":"https://artikelsepatu.com/#/schema/person/60817668aeb82cf9a4abd89afe3a874c","name":"Tony","image":{"@type":"ImageObject","inLanguage":"id","@id":"https://artikelsepatu.com/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/3829035116d8fcb65aec08935cb10b68?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/3829035116d8fcb65aec08935cb10b68?s=96&d=mm&r=g","caption":"Tony"},"url":"https://artikelsepatu.com/author/tony/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//pagead2.googlesyndication.com' />
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel='dns-prefetch' href='//gstatic.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+
+<link rel="alternate" type="application/rss+xml" title="ArtikelSepatu &raquo; Feed" href="https://artikelsepatu.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="ArtikelSepatu &raquo; Umpan Komentar" href="https://artikelsepatu.com/comments/feed/" />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://artikelsepatu.com/wp-includes/css/classic-themes.min.css' media='all' />
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--contrast: var(--contrast);--wp--preset--color--contrast-2: var(--contrast-2);--wp--preset--color--contrast-3: var(--contrast-3);--wp--preset--color--base: var(--base);--wp--preset--color--base-2: var(--base-2);--wp--preset--color--base-3: var(--base-3);--wp--preset--color--accent: var(--accent);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='wp-show-posts-css' href='https://artikelsepatu.com/wp-content/plugins/wp-show-posts/css/wp-show-posts-min.css' media='all' />
+<link rel='stylesheet' id='ez-toc-css' href='https://artikelsepatu.com/wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css' media='all' />
+<style id='ez-toc-inline-css'>
+div#ez-toc-container p.ez-toc-title {font-size: 120%;}div#ez-toc-container p.ez-toc-title {font-weight: 500;}div#ez-toc-container ul li {font-size: 95%;}div#ez-toc-container nav ul ul li ul li {font-size: %!important;}
+</style>
+<link rel='stylesheet' id='generate-widget-areas-css' href='https://artikelsepatu.com/wp-content/themes/generatepress/assets/css/components/widget-areas.min.css' media='all' />
+<link rel='stylesheet' id='generate-style-css' href='https://artikelsepatu.com/wp-content/themes/generatepress/assets/css/main.min.css' media='all' />
+<style id='generate-style-inline-css'>
+.is-right-sidebar{width:30%;}.is-left-sidebar{width:30%;}.site-content .content-area{width:70%;}@media (max-width: 800px){.main-navigation .menu-toggle,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul,.has-inline-mobile-toggle #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav){display:none;}.nav-align-right .inside-navigation,.nav-align-center .inside-navigation{justify-content:space-between;}}
+.dynamic-author-image-rounded{border-radius:100%;}.dynamic-featured-image, .dynamic-author-image{vertical-align:middle;}.one-container.blog .dynamic-content-template:not(:last-child), .one-container.archive .dynamic-content-template:not(:last-child){padding-bottom:0px;}.dynamic-entry-excerpt > p:last-child{margin-bottom:0px;}
+</style>
+<link rel='stylesheet' id='generatepress-dynamic-css' href='https://artikelsepatu.com/wp-content/uploads/generatepress/style.min.css' media='all' />
+<link rel='stylesheet' id='generate-offside-css' href='https://artikelsepatu.com/wp-content/plugins/gp-premium/menu-plus/functions/css/offside.min.css' media='all' />
+<style id='generate-offside-inline-css'>
+:root{--gp-slideout-width:265px;}.slideout-navigation.main-navigation{background-color:rgba(2,153,153,0.52);}.slideout-navigation.main-navigation .main-nav ul li a{color:var(--base-3);}.slideout-navigation.main-navigation ul ul{background-color:#277979;}.slideout-navigation.main-navigation .main-nav ul li:not([class*="current-menu-"]):hover > a, .slideout-navigation.main-navigation .main-nav ul li:not([class*="current-menu-"]):focus > a, .slideout-navigation.main-navigation .main-nav ul li.sfHover:not([class*="current-menu-"]) > a{color:#000000;background-color:#019898;}.slideout-navigation.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a, .slideout-navigation.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a, .slideout-navigation.main-navigation .main-nav ul ul li.sfHover:not([class*="current-menu-"]) > a{color:#000000;}.slideout-navigation, .slideout-navigation a{color:var(--base-3);}.slideout-navigation button.slideout-exit{color:var(--base-3);padding-left:20px;padding-right:20px;}.slide-opened nav.toggled .menu-toggle:before{display:none;}@media (max-width: 800px){.menu-bar-item.slideout-toggle{display:none;}}
+</style>
+<link rel='stylesheet' id='generate-navigation-branding-css' href='https://artikelsepatu.com/wp-content/plugins/gp-premium/menu-plus/functions/css/navigation-branding-flex.min.css' media='all' />
+<style id='generate-navigation-branding-inline-css'>
+.main-navigation.has-branding.grid-container .navigation-branding, .main-navigation.has-branding:not(.grid-container) .inside-navigation:not(.grid-container) .navigation-branding{margin-left:10px;}.navigation-branding img, .site-logo.mobile-header-logo img{height:70px;width:auto;}.navigation-branding .main-title{line-height:70px;}@media (max-width: 1310px){#site-navigation .navigation-branding, #sticky-navigation .navigation-branding{margin-left:10px;}}@media (max-width: 800px){.main-navigation.has-branding.nav-align-center .menu-bar-items, .main-navigation.has-sticky-branding.navigation-stick.nav-align-center .menu-bar-items{margin-left:auto;}.navigation-branding{margin-right:auto;margin-left:10px;}.navigation-branding .main-title, .mobile-header-navigation .site-logo{margin-left:10px;}.navigation-branding img, .site-logo.mobile-header-logo{height:65px;}.navigation-branding .main-title{line-height:65px;}}
+</style>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-includes/js/jquery/jquery.min.js' id='jquery-core-js' defer></script>
+<script type="rocketlazyloadscript" id='ez-toc-scroll-scriptjs-js-after'>window.addEventListener('DOMContentLoaded', function() {
+jQuery(document).ready(function(){document.querySelectorAll(".ez-toc-section").forEach(t=>{t.setAttribute("ez-toc-data-id","#"+decodeURI(t.getAttribute("id")))}),jQuery("a.ez-toc-link").click(function(){let t=jQuery(this).attr("href"),e=jQuery("#wpadminbar"),i=0;30>30&&(i=30),e.length&&(i+=e.height()),jQuery('[ez-toc-data-id="'+decodeURI(t)+'"]').length>0&&(i=jQuery('[ez-toc-data-id="'+decodeURI(t)+'"]').offset().top-i),jQuery("html, body").animate({scrollTop:i},500)})});
+});</script>
+<link rel="https://api.w.org/" href="https://artikelsepatu.com/wp-json/" /><link rel="alternate" type="application/json" href="https://artikelsepatu.com/wp-json/wp/v2/posts/4574" /><meta name="generator" content="WordPress 6.1.1" />
+<link rel='shortlink' href='https://artikelsepatu.com/?p=4574' />
+<link rel="alternate" type="application/json+oembed" href="https://artikelsepatu.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fartikelsepatu.com%2Fsepatu-running-terbaik%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://artikelsepatu.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fartikelsepatu.com%2Fsepatu-running-terbaik%2F&#038;format=xml" />
+<link rel="icon" href="https://artikelsepatu.com/wp-content/uploads/2022/04/cropped-android-chrome-512x512-1-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://artikelsepatu.com/wp-content/uploads/2022/04/cropped-android-chrome-512x512-1-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://artikelsepatu.com/wp-content/uploads/2022/04/cropped-android-chrome-512x512-1-180x180.png" />
+<meta name="msapplication-TileImage" content="https://artikelsepatu.com/wp-content/uploads/2022/04/cropped-android-chrome-512x512-1-270x270.png" />
+		<style id="wp-custom-css">
+			.cat-links, .tags-links{
+	padding:4px 14px 4px 4px;
+	background:#f5f5f5;
+	margin:4px;
+	display:inline-block;
+	border-radius:0px 8px 8px 0px;
+	border-left:3px solid #02c6c6;
+}
+.posted-on, .read-time, .byline, .read-time{
+	padding:4px 2px 4px 2px;
+	background:#f5f5f5;
+	display:inline-block;
+	border-radius:4px;
+	    display: inline-block;
+	margin: 0.2em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.entry-header{
+	border-bottom:2px solid #f5f5f5;
+}
+.wpsp-related-posts1 {
+    background-color: #fff;
+	  border-bottom: 1px solid #02c6c6;
+    padding: 24px 20px 10px 20px;
+    margin-top: 10px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: rgba(23, 43, 99, .14) 0 7px 28px !important;
+	text-align: center;
+}
+
+
+body a {
+    text-decoration: none;
+}
+
+blockquote {
+  max-width: 600px;
+  text-align: left;
+  margin: 20px;
+  padding: 10px;
+  font-size: 17px;
+  color: #363636;
+}
+.widget_block {
+	  border-bottom: 1px solid #02c6c6;
+}
+.wp-post-image, .ls-is-cached {
+	border-radius:5px;
+}
+.widget-title, .author-title {
+  border-bottom: 2px solid #02c6c6;
+  line-height: 2em;
+  display: inline-block;
+}
+nav {
+	border-bottom:2px solid #02c6c6;
+}
+.avatar-250 {
+	border:1px solid #02c6c6;
+}
+
+
+/* Pagination */
+.paging-navigation {
+    text-align: center;
+}
+
+.paging-navigation .page-numbers {
+    margin: 0 10px;
+    display: inline-block;
+    text-align: center;
+    min-width: 46px;
+    height: 46px;
+    line-height: 46px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid #019898;
+    background: #019898;
+    font-weight: 600;
+    font-size: 14px;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.paging-navigation .page-numbers.prev,
+.paging-navigation .page-numbers.next {
+    padding: 0 10px;
+}
+
+.paging-navigation .page-numbers:hover,
+.paging-navigation .page-numbers.current {
+    background: #fff;
+    color: #019898;
+}
+
+/* Adjust mobile layout */
+@media(max-width: 768px) {
+
+    .separate-containers .paging-navigation {
+        padding: 10px 5px !important;
+    }
+
+    .paging-navigation .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center
+    }
+
+    .paging-navigation .page-numbers {
+        margin: 4px !important;
+        box-sizing: border-box;
+        flex: 1 0 12%
+    }
+
+    .paging-navigation .page-numbers.prev,
+    .paging-navigation .page-numbers.next {
+        order: 50;
+        flex: 1 0 40%;
+        margin-top: 1em;
+    }
+}
+
+/* Number Lists */
+.entry-content ol {
+    counter-reset: li;
+}
+
+ol {
+    list-style: decimal;
+}
+
+.entry-content ol li {
+    position: relative;
+    margin: 0 0 .5rem 1.03rem;
+    padding: 4px 1.1rem .3rem 1.5rem;
+    list-style: none;
+    border-left: .5px solid #073042;
+}
+
+.entry-content ol>li:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    top: 0;
+    left: -1.2em;
+    box-sizing: border-box;
+    margin-right: 8px;
+    display: block;
+    font-size: .9rem;
+    padding: 7px;
+    width: 2.1rem;
+    height: 2.1rem;
+    line-height: 1.3;
+    text-align: center;
+    font-weight: 500;
+    border: .5px solid #004262;
+    background: #004262;
+    color: #fff;
+    border-radius: 999em;
+}
+
+/* sudut search */
+.navigation-search.nav-search-active {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+/* Author Box */
+.author-box {
+	padding: 3%;
+	padding-bottom: 10px;
+	margin-top: 60px;
+	font-size: 0.9em;
+	background-color: #fff;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border-radius: 5px;
+	box-shadow: rgba(23, 43, 99, .14) 0 7px 28px !important;
+}
+.author-box .avatar {
+	width: 250px;
+	height: auto;
+	border-radius: 100%;
+	margin-right: 30px;
+}
+h5.author-title {
+	margin-bottom: 0.1em;
+	font-weight: 600;
+}
+.author-description {
+	line-height: 1.6em
+}
+.author-links a {
+	margin-top: -1.5em;
+	font-size: 2em;
+	line-height: 2em;
+	float: left;
+}
+@media (max-width: 768px) {
+	.author-box {
+		padding: 20px;
+		padding-bottom: 0px;
+		margin-top: 100px;
+		flex-direction: column;
+		text-align: center;
+	}
+	.author-box .avatar {
+		margin-right: 0;
+		margin-bottom: 10px;
+		width: 100%;
+		margin-top: -35px;
+	}
+	.author-box .avatar img {
+		max-width: 100px;
+	}
+	.author-links a {
+		float: none;
+		align-self: center;
+	}
+	.author-description {
+		margin-bottom: -1.1em;
+	}
+}
+
+/** Social share **/
+.wplogout-social-wrapper {
+    margin: 30px 0;
+    font-size: 0;
+}
+
+.wplogout-social-wrapper span {
+    font-weight: bold;
+    padding-right: 10px;
+    font-size: 16px;
+}
+
+.wplogout-social-sharing {
+    font-size: 17px;
+    padding: 7px 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .wplogout-social-sharing {
+        font-size: 17px;
+        padding: 7px 12px;
+        display: inline-block;
+    }
+}
+
+.wplogout-social-sharing svg {
+    position: relative;
+    top: 0.15em;
+    display: inline-block;
+}
+
+.wplogout-social-facebook {
+    fill: #fff;
+	  border-radius:12px;
+	  margin:4px;
+    background-color: rgba(59, 89, 152, 1);
+
+}
+
+.wplogout-social-facebook:hover {
+    background-color: rgba(59, 89, 152, .8);
+}
+
+.wplogout-social-twitter {
+    fill: #fff;
+	  border-radius:12px;
+	  margin:4px;
+    background-color: rgba(29, 161, 242, 1);
+}
+
+.wplogout-social-twitter:hover {
+    background-color: rgba(29, 161, 242, .8);
+}
+
+.wplogout-social-pinterest {
+    fill: #fff;
+	  border-radius:12px;
+	  margin:4px;
+    background-color: rgba(189, 8, 28, 1);
+}
+
+.wplogout-social-pinterest:hover {
+    background-color: rgba(189, 8, 28, .8);
+}
+
+.wplogout-social-linkedin {
+    fill: #fff;
+	  border-radius:12px;
+	  margin:4px;
+    background-color: rgba(0, 119, 181, 1);
+}
+
+.wplogout-social-linkedin:hover {
+    background-color: rgba(0, 119, 181, .8);
+}
+
+.wplogout-social-whatsapp {
+    fill: #fff;
+	  border-radius:12px;
+	  margin:4px;
+    background-color: rgba(37, 211, 102, 1);
+}
+
+.wplogout-social-whatsapp:hover {
+    background-color: rgba(37, 211, 102, .8);
+}
+
+#breadcrumbs {
+    padding: 10px;
+    background: #fafafa;
+    color: #5f5f5f;
+    font-size: 14px;
+    box-shadow: rgba(23, 43, 99, .14) 0 7px 28px !important;
+}
+
+.kurungiklan { width: auto; height: 250px;}
+@media(min-width:400px) {.kurungiklan {width: 336px; height: 280px;}}
+@media(min-width:1100px) {.kurungiklan {width: auto;height: 280px;}}		</style>
+		<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7257119036450246"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="post-template-default single single-post postid-4574 single-format-standard wp-embed-responsive post-image-above-header post-image-aligned-center slideout-enabled slideout-mobile sticky-menu-slide sticky-enabled both-sticky-menu right-sidebar nav-below-header separate-containers nav-search-enabled header-aligned-left dropdown-hover" itemtype="https://schema.org/Blog" itemscope>
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><a class="screen-reader-text skip-link" href="#content" title="Langsung ke isi">Langsung ke isi</a>		<nav class="has-branding main-navigation nav-align-right has-menu-bar-items sub-menu-right" id="site-navigation" aria-label="Utama"  itemtype="https://schema.org/SiteNavigationElement" itemscope>
+			<div class="inside-navigation grid-container">
+				<div class="navigation-branding"><p class="main-title" itemprop="headline">
+					<a href="https://artikelsepatu.com/" rel="home">
+						ArtikelSepatu
+					</a>
+				</p></div><form method="get" class="search-form navigation-search" action="https://artikelsepatu.com/">
+					<input type="search" class="search-field" value="" name="s" title="Cari" />
+				</form>				<button class="menu-toggle" aria-controls="generate-slideout-menu" aria-expanded="false">
+					<span class="gp-icon icon-menu-bars"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z" /></svg><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" /></svg></span><span class="screen-reader-text">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-menu-1" class=" menu sf-menu"><li id="menu-item-1395" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1395"><a href="https://artikelsepatu.com/category/harga-sepatu/">Harga</a></li>
+<li id="menu-item-1396" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-1396"><a href="https://artikelsepatu.com/category/merek-sepatu/">Merek<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1397" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1397"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-adidas/">Sepatu Adidas</a></li>
+	<li id="menu-item-1398" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1398"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-consina/">Sepatu Consina</a></li>
+	<li id="menu-item-4207" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4207"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-converse/">Sepatu Converse</a></li>
+	<li id="menu-item-4064" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4064"><a href="https://artikelsepatu.com/category/merek-sepatu/eagle/">Eagle</a></li>
+	<li id="menu-item-1399" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1399"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-eiger/">Sepatu Eiger</a></li>
+	<li id="menu-item-1400" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1400"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-jogger/">Sepatu Jogger</a></li>
+	<li id="menu-item-1401" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1401"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-king/">Sepatu King</a></li>
+	<li id="menu-item-4208" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4208"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-league/">Sepatu League</a></li>
+	<li id="menu-item-1402" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1402"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-nike/">Sepatu Nike</a></li>
+	<li id="menu-item-1403" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1403"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-piero/">Sepatu Piero</a></li>
+	<li id="menu-item-1404" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1404"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-rei/">Sepatu Rei</a></li>
+	<li id="menu-item-4063" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4063"><a href="https://artikelsepatu.com/category/merek-sepatu/reebok/">Reebok</a></li>
+	<li id="menu-item-4209" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4209"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-rieker/">Sepatu Rieker</a></li>
+	<li id="menu-item-1405" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1405"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-snta/">Sepatu SNTA</a></li>
+	<li id="menu-item-3296" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3296"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-specs/">Sepatu Specs</a></li>
+	<li id="menu-item-1406" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1406"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-vans/">Sepatu Vans</a></li>
+	<li id="menu-item-3788" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3788"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-ventela/">Sepatu Ventela</a></li>
+	<li id="menu-item-1407" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1407"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-wakai/">Sepatu Wakai</a></li>
+</ul>
+</li>
+<li id="menu-item-1408" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1408"><a href="https://artikelsepatu.com/category/sepatu-gunung/">Gunung</a></li>
+<li id="menu-item-1411" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1411"><a href="https://artikelsepatu.com/category/sepatu-pria/">Pria</a></li>
+<li id="menu-item-1412" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1412"><a href="https://artikelsepatu.com/category/sepatu-wanita/">Wanita</a></li>
+<li id="menu-item-1414" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1414"><a href="https://artikelsepatu.com/category/tips/">Tips</a></li>
+<li id="menu-item-1415" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1415"><a href="https://artikelsepatu.com/category/toko-sepatu/">Toko</a></li>
+<li id="menu-item-1417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1417"><a href="#">Lainnya<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1413" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1413"><a href="https://artikelsepatu.com/category/serba-sebi/">Serba Serbi</a></li>
+	<li id="menu-item-1409" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1409"><a href="https://artikelsepatu.com/category/sepatu-lari/">Sepatu Lari</a></li>
+	<li id="menu-item-1410" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1410"><a href="https://artikelsepatu.com/category/sepatu-olahraga/">Sepatu Olahraga</a></li>
+	<li id="menu-item-3789" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3789"><a href="https://artikelsepatu.com/category/sandal/">Sandal</a></li>
+</ul>
+</li>
+<li id="menu-item-4152" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4152"><a href="https://artikelsepatu.com/category/ootd/">OOTD</a></li>
+</ul></div><div class="menu-bar-items"><span class="menu-bar-item search-item"><a aria-label="Buka Kolom Pencarian" href="#"><span class="gp-icon icon-search"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z" /></svg><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" /></svg></span></a></span></div>			</div>
+		</nav>
+		
+	<div class="site grid-container container hfeed" id="page">
+				<div class="site-content" id="content">
+			
+	<div class="content-area" id="primary">
+		<main class="site-main" id="main">
+			
+<article id="post-4574" class="post-4574 post type-post status-publish format-standard has-post-thumbnail hentry category-sepatu-lari category-sepatu-nike" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+			<div class="grid-container grid-parent">
+		<div class="page-header">
+			<p id="breadcrumbs"><span><span><a href="https://artikelsepatu.com/">Home</a></span> » <span><a href="https://artikelsepatu.com/category/merek-sepatu/">Merek Sepatu</a></span> » <span><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-nike/">Sepatu Nike</a></span> » <span class="breadcrumb_last" aria-current="page">Sepatu Running Terbaik dari Brand Nike, Ini Daftarnya</span></span></p>	
+		</div>
+	</div>
+			<header class="entry-header" aria-label="Konten">
+				<h1 class="entry-title" itemprop="headline">Sepatu Running Terbaik dari Brand Nike, Ini Daftarnya</h1>		<div class="entry-meta">
+			<span class="posted-on"><time class="updated" datetime="2023-01-31T08:49:13+00:00" itemprop="dateModified">31 Januari 2023</time><time class="entry-date published" datetime="2023-01-05T06:40:24+00:00" itemprop="datePublished">5 Januari 2023</time></span> <div class="read-time">Waktu Baca: 3 Menit</div><span class="byline">oleh <span class="author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope><a class="url fn n" href="https://artikelsepatu.com/author/tony/" title="Lihat semua tulisan oleh Tony" rel="author" itemprop="url"><span class="author-name" itemprop="name">Tony</span></a></span></span> 		</div>
+		<div class="wplogout-social-wrapper">
+Bagikan:
+	<a class="wplogout-social-sharing wplogout-social-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fartikelsepatu.com%2Fsepatu-running-terbaik%2F" target="_blank" rel="nofollow" title="bagikan ke facebook"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+	<a class="wplogout-social-sharing wplogout-social-twitter" href="https://twitter.com/intent/tweet?text=Sepatu+Running+Terbaik+dari+Brand+Nike%2C+Ini+Daftarnya&amp;url=https%3A%2F%2Fartikelsepatu.com%2Fsepatu-running-terbaik%2F&amp;via=wplogout" target="_blank" rel="nofollow" title="bagikan ke twitter"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+	<a class="wplogout-social-sharing wplogout-social-pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fartikelsepatu.com%2Fsepatu-running-terbaik%2F&amp;media=https%3A%2F%2Fartikelsepatu.com%2Fwp-content%2Fuploads%2F2023%2F01%2FSepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg&amp;description=Sepatu+Running+Terbaik+dari+Brand+Nike%2C+Ini+Daftarnya" target="_blank" rel="nofollow" title="bagikan ke pinterest"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" fill-rule="evenodd" clip-rule="evenodd"/></svg></a>
+	<a class="wplogout-social-sharing wplogout-social-linkedin" href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fartikelsepatu.com%2Fsepatu-running-terbaik%2F&amp;title=Sepatu+Running+Terbaik+dari+Brand+Nike%2C+Ini+Daftarnya&amp;mini=true" target="_blank" rel="nofollow" title="bagikan ke linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg></a>
+	<a class="wplogout-social-sharing wplogout-social-whatsapp" href="https://api.whatsapp.com/send?text=Sepatu+Running+Terbaik+dari+Brand+Nike%2C+Ini+Daftarnya https%3A%2F%2Fartikelsepatu.com%2Fsepatu-running-terbaik%2F" target="_blank" rel="nofollow" title="bagikan ke whatsapp"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>
+</div><div class="kurungiklan">
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7257119036450246"
+     data-ad-slot="5992449971"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>			</header>
+			
+		<div class="entry-content" itemprop="text">
+			<figure id="attachment_4576" aria-describedby="caption-attachment-4576" style="width: 790px" class="wp-caption aligncenter"><img decoding="async" class="wp-image-4576 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20525'%3E%3C/svg%3E" alt="Sepatu Running Terbaik dari Barnd Nike, Ini Daftarnya" width="800" height="525" data-lazy-srcset="https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg 800w, https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya-768x504.jpg 768w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg" /><noscript><img decoding="async" class="wp-image-4576 size-full" src="https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg" alt="Sepatu Running Terbaik dari Barnd Nike, Ini Daftarnya" width="800" height="525" srcset="https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya.jpg 800w, https://artikelsepatu.com/wp-content/uploads/2023/01/Sepatu-Running-Terbaik-dari-Barnd-Nike-Ini-Daftarnya-768x504.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" /></noscript><figcaption id="caption-attachment-4576" class="wp-caption-text">laundry.drop.id</figcaption></figure>
+<p>Sepatu running adalah alat yang penting bagi para atlet lari, terutama bagi mereka yang sering melakukan kegiatan lari jauh. Memilih sepatu running yang tepat dapat membantu Anda berlari dengan nyaman, mencegah cedera, dan memaksimalkan kinerja Anda. Namun, memilih sepatu running yang tepat dapat menjadi tantangan, karena ada banyak pilihan yang tersedia di pasaran.</p>
+<p>Untuk membantu Anda memilih sepatu running terbaik, berikut adalah beberapa hal yang perlu dipertimbangkan:</p>
+<div id="ez-toc-container" class="ez-toc-v2_0_47_1 counter-hierarchy ez-toc-counter ez-toc-grey ez-toc-container-direction">
+<div class="ez-toc-title-container">
+<p class="ez-toc-title">Daftar Isi :</p>
+<span class="ez-toc-title-toggle"><a href="#" class="ez-toc-pull-right ez-toc-btn ez-toc-btn-xs ez-toc-btn-default ez-toc-toggle" aria-label="ez-toc-toggle-icon-1"><label for="item-643e5882b7a5e" aria-label="Table of Content"><span style="display: flex;align-items: center;width: 35px;height: 30px;justify-content: center;direction:ltr;"><svg style="fill: #54e5a2;color:#54e5a2" xmlns="http://www.w3.org/2000/svg" class="list-377408" width="20px" height="20px" viewBox="0 0 24 24" fill="none"><path d="M6 6H4v2h2V6zm14 0H8v2h12V6zM4 11h2v2H4v-2zm16 0H8v2h12v-2zM4 16h2v2H4v-2zm16 0H8v2h12v-2z" fill="currentColor"></path></svg><svg style="fill: #54e5a2;color:#54e5a2" class="arrow-unsorted-368013" xmlns="http://www.w3.org/2000/svg" width="10px" height="10px" viewBox="0 0 24 24" version="1.2" baseProfile="tiny"><path d="M18.2 9.3l-6.2-6.3-6.2 6.3c-.2.2-.3.4-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7zM5.8 14.7l6.2 6.3 6.2-6.3c.2-.2.3-.5.3-.7s-.1-.5-.3-.7c-.2-.2-.4-.3-.7-.3h-11c-.3 0-.5.1-.7.3-.2.2-.3.5-.3.7s.1.5.3.7z"/></svg></span></label><input  type="checkbox" id="item-643e5882b7a5e"></a></span></div>
+<nav><ul class='ez-toc-list ez-toc-list-level-1 ' ><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-1" href="#Fitur_Utama" title="Fitur Utama">Fitur Utama</a></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-2" href="#Bentuk_Kaki" title="Bentuk Kaki">Bentuk Kaki</a></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-3" href="#Berat_Sepatu" title="Berat Sepatu">Berat Sepatu</a></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-4" href="#Harga" title="Harga">Harga</a></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-5" href="#1_Nike_Air_Zoom_Pegasus_36" title="1. Nike Air Zoom Pegasus 36">1. Nike Air Zoom Pegasus 36</a></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-6" href="#2_Nike_Quest_4" title="2. Nike Quest 4">2. Nike Quest 4</a></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-7" href="#3_Nike_Air_VaporMax_Flyknit_2" title="3. Nike Air VaporMax Flyknit 2">3. Nike Air VaporMax Flyknit 2</a></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-8" href="#4_Nike_Quest_4" title="4. Nike Quest 4">4. Nike Quest 4</a></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-9" href="#5_Nike_Asics_Gel-Kayano" title="5. Nike Asics Gel-Kayano">5. Nike Asics Gel-Kayano</a></li></ul></nav></div>
+<h2><span class="ez-toc-section" id="Fitur_Utama"></span><strong>Fitur Utama</strong><span class="ez-toc-section-end"></span></h2>
+<p>Pastikan sepatu yang Anda pilih memiliki fitur yang sesuai dengan kebutuhan Anda. Misalnya, jika Anda memiliki kaki yang cenderung overpronate (membungkuk ke dalam saat berlari), carilah <a href="https://artikelsepatu.com/harga-sepatu-tracer-la-women-running/">sepatu</a> dengan teknologi penyangga yang kuat. Jika Anda memiliki kaki yang cenderung supinate (membungkuk ke luar saat berlari), carilah sepatu dengan teknologi penyangga yang lembut.</p>
+<h2><span class="ez-toc-section" id="Bentuk_Kaki"></span><strong>Bentuk Kaki</strong><span class="ez-toc-section-end"></span></h2>
+<p>Pastikan sepatu yang Anda pilih sesuai dengan bentuk kaki Anda. Jika Anda memiliki kaki yang lebar, carilah sepatu dengan toebox yang lebar. Jika Anda memiliki kaki yang sempit, carilah sepatu dengan toebox yang sempit.</p>
+<h2><span class="ez-toc-section" id="Berat_Sepatu"></span><strong>Berat Sepatu</strong><span class="ez-toc-section-end"></span></h2>
+<p>Jika Anda sering berlari jarak jauh, carilah sepatu yang ringan agar tidak terlalu berat saat digunakan. Namun, jika Anda membutuhkan sepatu dengan dukungan yang lebih kuat, sepatu yang lebih berat mungkin lebih sesuai untuk Anda.</p>
+<h2><span class="ez-toc-section" id="Harga"></span><strong>Harga</strong><span class="ez-toc-section-end"></span></h2>
+<p>Sepatu running bisa sangat mahal. Namun, tidak perlu membeli yang termahal untuk mendapatkan sepatu yang berkualitas. Carilah sepatu yang memiliki fitur yang sesuai dengan kebutuhan Anda dan juga sesuai dengan budget Anda.</p>
+<p>Setelah mempertimbangkan fitur-fitur di atas, berikut adalah beberapa sepatu running terbaik yang dapat Anda pertimbangkan:</p>
+<h2><span class="ez-toc-section" id="1_Nike_Air_Zoom_Pegasus_36"></span><strong>1. Nike Air Zoom Pegasus 36</strong><span class="ez-toc-section-end"></span></h2>
+<figure id="attachment_4575" aria-describedby="caption-attachment-4575" style="width: 490px" class="wp-caption alignnone"><img decoding="async" class="wp-image-4575 size-full" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20500%20234'%3E%3C/svg%3E" alt="Nike Air Zoom Pegasus 36" width="500" height="234" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/01/Nike-Air-Zoom-Pegasus-36.jpg" /><noscript><img decoding="async" class="wp-image-4575 size-full" src="https://artikelsepatu.com/wp-content/uploads/2023/01/Nike-Air-Zoom-Pegasus-36.jpg" alt="Nike Air Zoom Pegasus 36" width="500" height="234" /></noscript><figcaption id="caption-attachment-4575" class="wp-caption-text">fleetfeet.com</figcaption></figure>
+<p>Nike Air Zoom Pegasus 36 adalah sepatu lari <a href="https://www.nike.com/id/">Nike</a> yang dirancang untuk memberikan kenyamanan dan dukungan saat berlari. Sepatu ini memiliki upper yang terbuat dari kain mesh yang lembut dan bernapas, serta lapisan tambahan di bagian depan untuk memberikan proteksi tambahan. Sepatu ini juga dilengkapi dengan sistem penyangga Zoom Air di bagian depan yang membantu menopang ark dan memberikan dukungan saat berlari. Sol sepatu ini terbuat dari cairan Phylon yang ringan dan responsif, yang membantu menyerap hentakan saat berlari dan memberikan daya dorong yang lebih baik.</p>
+<h2><span class="ez-toc-section" id="2_Nike_Quest_4"></span><strong>2. Nike Quest 4</strong><span class="ez-toc-section-end"></span></h2>
+<p>Nike Quest 4 adalah sepatu lari Nike yang dirancang untuk memberikan kenyamanan dan dukungan saat berlari. Sepatu ini memiliki upper yang terbuat dari kain mesh yang lembut dan bernapas, serta lapisan tambahan di bagian depan untuk memberikan proteksi tambahan. Sepatu ini juga dilengkapi dengan sistem penyangga dinamis yang membantu menopang ark dan memberikan dukungan saat berlari. Sol sepatu ini terbuat dari cairan Phylon yang ringan dan responsif, yang membantu menyerap hentakan saat berlari dan memberikan daya dorong yang lebih baik. Sepatu ini cocok untuk atlet lari yang mencari sepatu yang nyaman dan memberikan dukungan yang baik saat berlari.</p>
+<h2><span class="ez-toc-section" id="3_Nike_Air_VaporMax_Flyknit_2"></span><strong>3. Nike Air VaporMax Flyknit 2</strong><span class="ez-toc-section-end"></span></h2>
+<p>Nike Air VaporMax Flyknit 2 adalah sepatu lari Nike yang dirancang untuk memberikan kenyamanan dan dukungan saat berlari. Sepatu ini memiliki upper yang terbuat dari kain Flyknit yang lembut, bernapas, dan menyokong kaki secara dinamis saat berlari.</p>
+<p>Sepatu ini juga dilengkapi dengan sistem penyangga Air VaporMax yang menyediakan amortisasi yang responsif dan membantu menyerap hentakan saat berlari. Sol sepatu ini terbuat dari cairan Phylon yang ringan dan responsif, yang membantu memberikan daya dorong yang lebih baik saat berlari. Sepatu ini cocok untuk atlet lari yang mencari sepatu yang nyaman, ringan, dan memberikan amortisasi yang baik saat berlari.</p>
+<h2><span class="ez-toc-section" id="4_Nike_Quest_4"></span><strong>4. Nike Quest 4</strong><span class="ez-toc-section-end"></span></h2>
+<p>Selanjutnya, ada Nike Quest 4 adalah sepatu lari Nike yang dirancang untuk memberikan kenyamanan dan dukungan saat berlari. Sepatu ini memiliki upper yang terbuat dari kain mesh yang lembut dan bernapas, serta lapisan tambahan di bagian depan untuk memberikan proteksi tambahan. Sepatu ini juga dilengkapi dengan sistem penyangga dinamis yang membantu menopang ark dan memberikan dukungan saat berlari. Sol sepatu ini terbuat dari cairan Phylon yang ringan dan responsif, yang membantu menyerap hentakan saat berlari dan memberikan daya dorong yang lebih baik.</p>
+<h2><span class="ez-toc-section" id="5_Nike_Asics_Gel-Kayano"></span><strong>5. Nike Asics Gel-Kayano</strong><span class="ez-toc-section-end"></span></h2>
+<p>Sepatu ini memiliki upper yang terbuat dari kain mesh yang bernapas dan lapisan tambahan di bagian depan untuk memberikan proteksi tambahan. Selain itu, Nike Asics Gel-Kayano dilengkapi dengan sistem penyangga Gel di bagian depan dan belakang yang membantu menyerap hentakan saat berlari dan memberikan dukungan yang baik.</p>
+<p>Jadi, jika Anda mencari sepatu running terbaik yang akan membantu Anda berlari dengan nyaman, mencegah cedera, dan memaksimalkan kinerja Anda, pertimbangkan untuk memilih salah satu dari sepatu-sepatu di atas. Pastikan untuk mempertimbangkan fitur yang sesuai dengan kebutuhan Anda dan juga mempertimbangkan bentuk kaki, berat sepatu, dan harga sepatu yang sesuai dengan budget Anda.</p>
+		</div>
+
+				<footer class="entry-meta" aria-label="Meta postingan">
+			<span class="cat-links"><span class="gp-icon icon-categories"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 112c0-26.51 21.49-48 48-48h110.014a48 48 0 0143.592 27.907l12.349 26.791A16 16 0 00228.486 128H464c26.51 0 48 21.49 48 48v224c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112z" /></svg></span><span class="screen-reader-text">Kategori </span><a href="https://artikelsepatu.com/category/sepatu-lari/" rel="category tag">Sepatu Lari</a>, <a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-nike/" rel="category tag">Sepatu Nike</a></span> 		</footer>
+		<div class="kurungiklan">
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7257119036450246"
+     data-ad-slot="5481328798"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div><div class="author-box">
+	<div class="avatar">
+		<img alt='' src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20250%20250'%3E%3C/svg%3E" data-lazy-srcset='https://secure.gravatar.com/avatar/3829035116d8fcb65aec08935cb10b68?s=500&#038;d=mm&#038;r=g 2x' class='avatar avatar-250 photo' height='250' width='250' decoding='async' data-lazy-src="https://secure.gravatar.com/avatar/3829035116d8fcb65aec08935cb10b68?s=250&#038;d=mm&#038;r=g"/><noscript><img alt='' src='https://secure.gravatar.com/avatar/3829035116d8fcb65aec08935cb10b68?s=250&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/3829035116d8fcb65aec08935cb10b68?s=500&#038;d=mm&#038;r=g 2x' class='avatar avatar-250 photo' height='250' width='250' decoding='async'/></noscript>	</div>
+	<div class="author-info">
+		<h5 class="author-title" itemprop="author" itemscope itemtype="http://schema.org/Person">
+			<span itemprop="name">Tony</span>
+		</h5>
+		<div class="author-summary">
+			<p class="author-description"></p></div>
+		<div class="author-links">
+			<a href="https://artikelsepatu.com/author/tony/" title="Read more">...</a>
+		</div>
+	</div>
+</div><div class="wpsp-related-posts1  grid-container">
+	<h2 class="widget-title">Artikel Terkait</h2>
+<style>.wp-show-posts-columns#wpsp-3028 {margin-left: -2em; }.wp-show-posts-columns#wpsp-3028 .wp-show-posts-inner {margin: 0 0 2em 2em; }</style><section id="wpsp-3028" class=" wp-show-posts-columns wp-show-posts" style=""><article class=" wp-show-posts-single post-4647 post type-post status-publish format-standard has-post-thumbnail hentry category-sepatu-lari wpsp-col-4" itemtype="http://schema.org/CreativeWork" itemscope><div class="wp-show-posts-inner" style="">		<div class="wp-show-posts-image  wpsp-image-center ">
+			<a href="https://artikelsepatu.com/perhatikan-hal-ini-sebelum-membeli-sepatu-trail-running/"  title="Perhatikan Hal Ini Sebelum Membeli Sepatu Trail Running">					<img width="211" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20211%20150'%3E%3C/svg%3E" alt="Perhatikan Hal Ini Sebelum Membeli Sepatu Trail Running" itemprop="image" class="center" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/01/Perhatikan-Hal-Ini-Sebelum-Membeli-Sepatu-Trail-Running-211x150.jpg" /><noscript><img width="211" height="150" src="https://artikelsepatu.com/wp-content/uploads/2023/01/Perhatikan-Hal-Ini-Sebelum-Membeli-Sepatu-Trail-Running-211x150.jpg" alt="Perhatikan Hal Ini Sebelum Membeli Sepatu Trail Running" itemprop="image" class="center" /></noscript>
+				</a>		</div>
+		<div class="wpsp-content-wrap">						<header class="wp-show-posts-entry-header">
+							<h4 class="wp-show-posts-entry-title" itemprop="headline"><a href="https://artikelsepatu.com/perhatikan-hal-ini-sebelum-membeli-sepatu-trail-running/" rel="bookmark">Perhatikan Hal Ini Sebelum Membeli Sepatu Trail Running</a></h4>						</header><!-- .entry-header -->
+					<!-- Close WPSP Wrapperr -->
+</div></div><!-- wp-show-posts-inner --></article><article class=" wp-show-posts-single post-4639 post type-post status-publish format-standard has-post-thumbnail hentry category-sepatu-adidas category-sepatu-lari wpsp-col-4" itemtype="http://schema.org/CreativeWork" itemscope><div class="wp-show-posts-inner" style="">		<div class="wp-show-posts-image  wpsp-image-center ">
+			<a href="https://artikelsepatu.com/ultraboost-22-sepatu-lari-tangguh-milik-adidas/"  title="Ultraboost 22, Sepatu Lari Tangguh Milik Adidas">					<img width="211" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20211%20150'%3E%3C/svg%3E" alt="Ultraboost 22, Sepatu Lari Tangguh Milik Adidas" itemprop="image" class="center" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/01/Ultraboost-22-Sepatu-Lari-Tangguh-Milik-Adidas-211x150.png" /><noscript><img width="211" height="150" src="https://artikelsepatu.com/wp-content/uploads/2023/01/Ultraboost-22-Sepatu-Lari-Tangguh-Milik-Adidas-211x150.png" alt="Ultraboost 22, Sepatu Lari Tangguh Milik Adidas" itemprop="image" class="center" /></noscript>
+				</a>		</div>
+		<div class="wpsp-content-wrap">						<header class="wp-show-posts-entry-header">
+							<h4 class="wp-show-posts-entry-title" itemprop="headline"><a href="https://artikelsepatu.com/ultraboost-22-sepatu-lari-tangguh-milik-adidas/" rel="bookmark">Ultraboost 22, Sepatu Lari Tangguh Milik Adidas</a></h4>						</header><!-- .entry-header -->
+					<!-- Close WPSP Wrapperr -->
+</div></div><!-- wp-show-posts-inner --></article><article class=" wp-show-posts-single post-4347 post type-post status-publish format-standard has-post-thumbnail hentry category-sepatu-lari category-sepatu-pria category-sepatu-wanita wpsp-col-4" itemtype="http://schema.org/CreativeWork" itemscope><div class="wp-show-posts-inner" style="">		<div class="wp-show-posts-image  wpsp-image-center ">
+			<a href="https://artikelsepatu.com/rekomendasi-sepatu-lari-dibawah-500-ribu/"  title="10 Rekomendasi Sepatu Lari Dibawah 500 Ribu! Ada Brand Lokal Juga">					<img width="211" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20211%20150'%3E%3C/svg%3E" alt="10 Rekomendasi Sepatu Lari Dibawah 500 Ribu! Ada Brand Lokal Juga" itemprop="image" class="center" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2022/11/rekomendasi-sepatu-lari-dibawah-500-ribu-211x150.webp" /><noscript><img width="211" height="150" src="https://artikelsepatu.com/wp-content/uploads/2022/11/rekomendasi-sepatu-lari-dibawah-500-ribu-211x150.webp" alt="10 Rekomendasi Sepatu Lari Dibawah 500 Ribu! Ada Brand Lokal Juga" itemprop="image" class="center" /></noscript>
+				</a>		</div>
+		<div class="wpsp-content-wrap">						<header class="wp-show-posts-entry-header">
+							<h4 class="wp-show-posts-entry-title" itemprop="headline"><a href="https://artikelsepatu.com/rekomendasi-sepatu-lari-dibawah-500-ribu/" rel="bookmark">10 Rekomendasi Sepatu Lari Dibawah 500 Ribu! Ada Brand Lokal Juga</a></h4>						</header><!-- .entry-header -->
+					<!-- Close WPSP Wrapperr -->
+</div></div><!-- wp-show-posts-inner --></article><div class="wpsp-clear"></div></section><!-- .wp-show-posts --></div>	</div>
+</article>
+		</main>
+	</div>
+
+	<div class="widget-area sidebar is-right-sidebar" id="right-sidebar">
+	<div class="inside-right-sidebar">
+		<aside id="rpwe_widget-2" class="widget-odd widget-first widget-1 widget inner-padding rpwe_widget recent-posts-extended"><style>.rpwe-block ul{
+list-style: none !important;
+margin-left: 0 !important;
+padding-left: 0 !important;
+}
+
+.rpwe-block li{
+border-bottom: 1px solid #eee;
+margin: 0 0 8px !important;
+padding: 5px 0 10px !important;
+list-style-type: none !important;
+display: block;
+}
+
+.rpwe-block a{
+display: inline !important;
+text-decoration: none;
+}
+
+.rpwe-block h3{
+background: none !important;
+clear: none;
+margin-bottom: 0 !important;
+margin-top: 0 !important;
+font-weight: 400;
+font-size: 17px !important;
+line-height: 1.5em;
+}
+
+.rpwe-thumb{
+border: 1px solid #eee !important;
+box-shadow: none !important;
+margin: 2px 10px 2px 0 !important;
+padding: 3px !important;
+}
+
+.rpwe-summary{
+font-size: 12px;
+}
+
+.rpwe-time{
+color: #444;
+font-size: 11px;
+}
+
+.rpwe-alignleft{
+display: inline;
+float: left;
+}
+
+.rpwe-alignright{
+display: inline;
+float: right;
+}
+
+.rpwe-aligncenter{
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.rpwe-clearfix:before,
+.rpwe-clearfix:after{
+content: &quot;&quot;;
+display: table !important;
+}
+.rpwe-clearfix{clear:both}
+.rpwe-clearfix:after{
+clear: both;
+}
+
+.rpwe-clearfix{
+zoom: 1;
+}
+</style><h2 class="widget-title">Artikel Terbaru</h2><div  class="rpwe-block"><ul class="rpwe-ul"><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/sepatu-lebaran-wanita-remaja/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="8 Model Sepatu Lebaran Wanita Remaja Yang Modis dan Stylish" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/02/8-Model-Sepatu-Lebaran-Wanita-Remaja-Yang-Modis-dan-Stylish-75x75.webp"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2023/02/8-Model-Sepatu-Lebaran-Wanita-Remaja-Yang-Modis-dan-Stylish-75x75.webp" alt="8 Model Sepatu Lebaran Wanita Remaja Yang Modis dan Stylish" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/sepatu-lebaran-wanita-remaja/" target="_self">8 Model Sepatu Lebaran Wanita Remaja Yang Modis dan Stylish</a></h3><time class="rpwe-time published" datetime="2023-02-22T08:13:58+00:00">22 Februari 2023</time></li><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/sepatu-untuk-kuliah-wanita-berhijab/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="10 Rekomendasi Sepatu Untuk Kuliah Wanita Berhijab" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/02/10-Rekomendasi-Sepatu-Untuk-Kuliah-Wanita-Berhijab-75x75.webp"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2023/02/10-Rekomendasi-Sepatu-Untuk-Kuliah-Wanita-Berhijab-75x75.webp" alt="10 Rekomendasi Sepatu Untuk Kuliah Wanita Berhijab" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/sepatu-untuk-kuliah-wanita-berhijab/" target="_self">10 Rekomendasi Sepatu Untuk Kuliah Wanita Berhijab</a></h3><time class="rpwe-time published" datetime="2023-02-22T06:05:31+00:00">22 Februari 2023</time></li><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/sepatu-yang-cocok-untuk-celana-kulot-hijab/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="9 Model Sepatu Yang Cocok Untuk Celana Kulot Hijab" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/02/9-Model-Sepatu-Yang-Cocok-Untuk-Celana-Kulot-Hijab-75x75.webp"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2023/02/9-Model-Sepatu-Yang-Cocok-Untuk-Celana-Kulot-Hijab-75x75.webp" alt="9 Model Sepatu Yang Cocok Untuk Celana Kulot Hijab" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/sepatu-yang-cocok-untuk-celana-kulot-hijab/" target="_self">9 Model Sepatu Yang Cocok Untuk Celana Kulot Hijab</a></h3><time class="rpwe-time published" datetime="2023-02-21T18:19:58+00:00">21 Februari 2023</time></li><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/ootd-sepatu-converse-tinggi-hijab/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="7 OOTD Sepatu Converse Tinggi Hijab Yang Casual dan Fashionable" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/02/7-OOTD-Sepatu-Converse-Tinggi-Hijab-Yang-Casual-dan-Fashionable-75x75.webp"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2023/02/7-OOTD-Sepatu-Converse-Tinggi-Hijab-Yang-Casual-dan-Fashionable-75x75.webp" alt="7 OOTD Sepatu Converse Tinggi Hijab Yang Casual dan Fashionable" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/ootd-sepatu-converse-tinggi-hijab/" target="_self">7 OOTD Sepatu Converse Tinggi Hijab Yang Casual dan Fashionable</a></h3><time class="rpwe-time published" datetime="2023-02-21T14:33:05+00:00">21 Februari 2023</time></li><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/sepatu-pengantin-untuk-kebaya/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="5 Rekomendasi Sepatu Pengantin Untuk Kebaya Yang Cantik" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/02/Tips-Memilih-Sepatu-Pengantin-Untuk-Kebaya-Yang-Cantik-75x75.webp"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2023/02/Tips-Memilih-Sepatu-Pengantin-Untuk-Kebaya-Yang-Cantik-75x75.webp" alt="5 Rekomendasi Sepatu Pengantin Untuk Kebaya Yang Cantik" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/sepatu-pengantin-untuk-kebaya/" target="_self">5 Rekomendasi Sepatu Pengantin Untuk Kebaya Yang Cantik</a></h3><time class="rpwe-time published" datetime="2023-02-20T09:17:39+00:00">20 Februari 2023</time></li></ul></div><!-- Generated by http://wordpress.org/plugins/recent-posts-widget-extended/ --></aside><aside id="rpwe_widget-3" class="widget-even widget-last widget-2 widget inner-padding rpwe_widget recent-posts-extended"><h2 class="widget-title">Mungkin Anda Tertarik</h2><div  class="rpwe-block"><ul class="rpwe-ul"><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/toko-sepatu-ponorogo/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="Daftar Toko Sepatu Ponorogo" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2022/04/toko-sepatu-ponorogo-min-75x75.jpg"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2022/04/toko-sepatu-ponorogo-min-75x75.jpg" alt="Daftar Toko Sepatu Ponorogo" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/toko-sepatu-ponorogo/" target="_self">Daftar Toko Sepatu Ponorogo</a></h3><time class="rpwe-time published" datetime="2022-04-18T16:13:24+00:00">18 April 2022</time></li><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/model-dan-harga-sepatu-jordan-termahal/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="10 Model dan Harga Sepatu Jordan Termahal Dibawah 5 Juta" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2022/07/Harga-Sepatu-Jordan-Termahal-75x75.webp"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2022/07/Harga-Sepatu-Jordan-Termahal-75x75.webp" alt="10 Model dan Harga Sepatu Jordan Termahal Dibawah 5 Juta" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/model-dan-harga-sepatu-jordan-termahal/" target="_self">10 Model dan Harga Sepatu Jordan Termahal Dibawah 5 Juta</a></h3><time class="rpwe-time published" datetime="2022-07-17T03:24:53+00:00">17 Juli 2022</time></li><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/ootd-sepatu-converse-tinggi-hijab/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="7 OOTD Sepatu Converse Tinggi Hijab Yang Casual dan Fashionable" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/02/7-OOTD-Sepatu-Converse-Tinggi-Hijab-Yang-Casual-dan-Fashionable-75x75.webp"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2023/02/7-OOTD-Sepatu-Converse-Tinggi-Hijab-Yang-Casual-dan-Fashionable-75x75.webp" alt="7 OOTD Sepatu Converse Tinggi Hijab Yang Casual dan Fashionable" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/ootd-sepatu-converse-tinggi-hijab/" target="_self">7 OOTD Sepatu Converse Tinggi Hijab Yang Casual dan Fashionable</a></h3><time class="rpwe-time published" datetime="2023-02-21T14:33:05+00:00">21 Februari 2023</time></li><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/sepatu-dari-kulit-ceker-ayam/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="Sepatu dari Kulit Ceker Ayam yang Mendunia" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2022/11/2-sepatu-dari-kulit-ayam-75x75.webp"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2022/11/2-sepatu-dari-kulit-ayam-75x75.webp" alt="Sepatu dari Kulit Ceker Ayam yang Mendunia" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/sepatu-dari-kulit-ceker-ayam/" target="_self">Sepatu dari Kulit Ceker Ayam yang Mendunia</a></h3><time class="rpwe-time published" datetime="2022-11-11T08:40:39+00:00">11 November 2022</time></li><li class="rpwe-li rpwe-clearfix"><a class="rpwe-img" href="https://artikelsepatu.com/paduan-gamis-dan-sneakers/" target="_self"><img class="rpwe-alignleft rpwe-thumb" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2075%2075'%3E%3C/svg%3E" alt="Paduan Gamis dan Sneakers Buat Tampilan Makin Kekinian" height="75" width="75" decoding="async" data-lazy-src="https://artikelsepatu.com/wp-content/uploads/2023/01/Paduan-Gamis-dan-Sneakers-Buat-Tampilan-Makin-Kekinian-75x75.jpg"><noscript><img class="rpwe-alignleft rpwe-thumb" src="https://artikelsepatu.com/wp-content/uploads/2023/01/Paduan-Gamis-dan-Sneakers-Buat-Tampilan-Makin-Kekinian-75x75.jpg" alt="Paduan Gamis dan Sneakers Buat Tampilan Makin Kekinian" height="75" width="75" loading="lazy" decoding="async"></noscript></a><h3 class="rpwe-title"><a href="https://artikelsepatu.com/paduan-gamis-dan-sneakers/" target="_self">Paduan Gamis dan Sneakers Buat Tampilan Makin Kekinian</a></h3><time class="rpwe-time published" datetime="2023-01-11T12:25:25+00:00">11 Januari 2023</time></li></ul></div><!-- Generated by http://wordpress.org/plugins/recent-posts-widget-extended/ --></aside>	</div>
+</div>
+
+	</div>
+</div>
+
+
+<div class="site-footer footer-bar-active footer-bar-align-right">
+			<footer class="site-info" aria-label="Situs"  itemtype="https://schema.org/WPFooter" itemscope>
+			<div class="inside-site-info grid-container">
+						<div class="footer-bar">
+			<aside id="nav_menu-8" class="widget-odd widget-last widget-first widget-1 widget inner-padding widget_nav_menu"><div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-318" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-318"><a href="https://artikelsepatu.com/privacy-policy-for-artikelsepatu-com/">Privacy</a></li>
+<li id="menu-item-319" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-319"><a href="https://artikelsepatu.com/disclaimer-for-artikelsepatu-com/">Disclaimer</a></li>
+<li id="menu-item-320" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-320"><a href="https://artikelsepatu.com/about-us/">About</a></li>
+<li id="menu-item-321" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-321"><a href="https://artikelsepatu.com/contact-us/">Contact</a></li>
+</ul></div></aside>		</div>
+						<div class="copyright-bar">
+					&copy; 2023 Artikelsepatu.com				</div>
+			</div>
+		</footer>
+		</div>
+
+		<nav id="generate-slideout-menu" class="main-navigation slideout-navigation" itemtype="https://schema.org/SiteNavigationElement" itemscope>
+			<div class="inside-navigation grid-container grid-parent">
+				<div class="main-nav"><ul id="menu-menu-2" class=" slideout-menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1395"><a href="https://artikelsepatu.com/category/harga-sepatu/">Harga</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-1396"><a href="https://artikelsepatu.com/category/merek-sepatu/">Merek<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1397"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-adidas/">Sepatu Adidas</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1398"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-consina/">Sepatu Consina</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4207"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-converse/">Sepatu Converse</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4064"><a href="https://artikelsepatu.com/category/merek-sepatu/eagle/">Eagle</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1399"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-eiger/">Sepatu Eiger</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1400"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-jogger/">Sepatu Jogger</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1401"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-king/">Sepatu King</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4208"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-league/">Sepatu League</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1402"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-nike/">Sepatu Nike</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1403"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-piero/">Sepatu Piero</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1404"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-rei/">Sepatu Rei</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4063"><a href="https://artikelsepatu.com/category/merek-sepatu/reebok/">Reebok</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4209"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-rieker/">Sepatu Rieker</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1405"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-snta/">Sepatu SNTA</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3296"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-specs/">Sepatu Specs</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1406"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-vans/">Sepatu Vans</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3788"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-ventela/">Sepatu Ventela</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1407"><a href="https://artikelsepatu.com/category/merek-sepatu/sepatu-wakai/">Sepatu Wakai</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1408"><a href="https://artikelsepatu.com/category/sepatu-gunung/">Gunung</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1411"><a href="https://artikelsepatu.com/category/sepatu-pria/">Pria</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1412"><a href="https://artikelsepatu.com/category/sepatu-wanita/">Wanita</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1414"><a href="https://artikelsepatu.com/category/tips/">Tips</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1415"><a href="https://artikelsepatu.com/category/toko-sepatu/">Toko</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1417"><a href="#">Lainnya<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1413"><a href="https://artikelsepatu.com/category/serba-sebi/">Serba Serbi</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1409"><a href="https://artikelsepatu.com/category/sepatu-lari/">Sepatu Lari</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1410"><a href="https://artikelsepatu.com/category/sepatu-olahraga/">Sepatu Olahraga</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3789"><a href="https://artikelsepatu.com/category/sandal/">Sandal</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4152"><a href="https://artikelsepatu.com/category/ootd/">OOTD</a></li>
+</ul></div>			</div><!-- .inside-navigation -->
+		</nav><!-- #site-navigation -->
+
+					<div class="slideout-overlay">
+									<button class="slideout-exit has-svg-icon">
+						<span class="gp-icon pro-close">
+				<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+					<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" />
+				</svg>
+			</span>						<span class="screen-reader-text">Close</span>
+					</button>
+							</div>
+			<script type="rocketlazyloadscript" id="generate-a11y">!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();</script><script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-content/plugins/gp-premium/menu-plus/functions/js/sticky.min.js' id='generate-sticky-js' defer></script>
+<script id='generate-offside-js-extra'>
+var offSide = {"side":"left"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-content/plugins/gp-premium/menu-plus/functions/js/offside.min.js' id='generate-offside-js' defer></script>
+<script id='generate-smooth-scroll-js-extra'>
+var smooth = {"elements":[".smooth-scroll","li.smooth-scroll a"],"duration":"800"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-content/plugins/gp-premium/general/js/smooth-scroll.min.js' id='generate-smooth-scroll-js' defer></script>
+<script type="rocketlazyloadscript" id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script id='rocket-preload-links-js-extra'>
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index\\.php\/)?(.*)wp\\-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/artikelsepatu.com","onHoverDelay":"100","rateThrottle":"3"};
+</script>
+<script type="rocketlazyloadscript" id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<!--[if lte IE 11]>
+<script src='https://artikelsepatu.com/wp-content/themes/generatepress/assets/js/classList.min.js' id='generate-classlist-js'></script>
+<![endif]-->
+<script id='generate-menu-js-extra'>
+var generatepressMenu = {"toggleOpenedSubMenus":"1","openSubMenuLabel":"Buka Submenu","closeSubMenuLabel":"Tutup submenu"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-content/themes/generatepress/assets/js/menu.min.js' id='generate-menu-js' defer></script>
+<script id='generate-navigation-search-js-extra'>
+var generatepressNavSearch = {"open":"Buka Kolom Pencarian","close":"Tutup Kolom Pencarian"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-content/themes/generatepress/assets/js/navigation-search.min.js' id='generate-navigation-search-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-includes/js/jquery/jquery-migrate.min.js' id='jquery-migrate-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js' id='ez-toc-js-cookie-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js' id='ez-toc-jquery-sticky-kit-js' defer></script>
+<script id='ez-toc-js-js-extra'>
+var ezTOC = {"smooth_scroll":"1","visibility_hide_by_default":"","width":"auto","scroll_offset":"30","fallbackIcon":"<span style=\"display: flex;align-items: center;width: 35px;height: 30px;justify-content: center;direction:ltr;\"><svg style=\"fill: #54e5a2;color:#54e5a2\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" class=\"list-377408\" width=\"20px\" height=\"20px\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6 6H4v2h2V6zm14 0H8v2h12V6zM4 11h2v2H4v-2zm16 0H8v2h12v-2zM4 16h2v2H4v-2zm16 0H8v2h12v-2z\" fill=\"currentColor\"><\/path><\/svg><svg style=\"fill: #54e5a2;color:#54e5a2\" class=\"arrow-unsorted-368013\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"10px\" height=\"10px\" viewBox=\"0 0 24 24\" version=\"1.2\" baseProfile=\"tiny\"><path d=\"M18.2 9.3l-6.2-6.3-6.2 6.3c-.2.2-.3.4-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7zM5.8 14.7l6.2 6.3 6.2-6.3c.2-.2.3-.5.3-.7s-.1-.5-.3-.7c-.2-.2-.4-.3-.7-.3h-11c-.3 0-.5.1-.7.3-.2.2-.3.5-.3.7s.1.5.3.7z\"\/><\/svg><\/span>"};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src='https://artikelsepatu.com/wp-content/plugins/easy-table-of-contents/assets/js/front.min.js' id='ez-toc-js-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src='https://artikelsepatu.com/wp-content/cache/min/1/wp-content/plugins/wp-show-posts/js/jquery.matchHeight.js?ver=1679584164' id='wpsp-matchHeight-js' defer></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://artikelsepatu.com/wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script><script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=G-TZ4KKMB71S"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TZ4KKMB71S');
+</script>
+</body>
+</html>
+<!--
+Performance optimized by Redis Object Cache. Learn more: https://wprediscache.com
+
+Retrieved 6691 objects (1 MB) from Redis using PhpRedis (v5.3.4).
+-->
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1681807490 -->
